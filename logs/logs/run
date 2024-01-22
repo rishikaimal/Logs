@@ -1,7 +1,6 @@
 #!/bin/sh -u
 exec 2>&1
 . /etc/runit/functions
-sleep 6m
 msg 'executing Logs service...'
 exec /usr/bin/log.sh
 msg 'Logs done Successfully...'
