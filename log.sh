@@ -15,7 +15,7 @@ SR_NO=$(grep '0x1004' "$REGISTRY_FILE" 2>/dev/null | cut -d'=' -f2 | tr -d ' .<>
 
 # Checking wether switch is connected to rudder or not
 cloud_conn="/mnt/flash/sw-config.json"                                                                                                                                       
-while [ "$(jq -r '.wizard.miyagi_cloud_conn' "$cloud_conn") == "false" ]; do                                                                                                                                                                                             
+while [ "$(jq -r '.wizard.miyagi_cloud_conn' "$cloud_conn")" == "false" ]; do                                                                                                                                                                                             
     sleep 5                                                                                                                                                                                                                                                                                                         
 done    
 
