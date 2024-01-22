@@ -14,20 +14,12 @@ targetHost="203.0.113.121"
 SR_NO=$(grep '0x1004' "$REGISTRY_FILE" 2>/dev/null | cut -d'=' -f2 | tr -d ' .<>*\\/\t')
 
 # Checking wether switch is connected to rudder or not
-cloud_conn="/mnt/flash/sw-config.json"                                                                                                                                                                             
-json_data=$(cat "$cloud_conn")                                                                                                                                                                                     
-                                                                                                                                                                                                                   
-miyagi_cloud_conn=$(echo "$json_data" | jq -r '.wizard.miyagi_cloud_conn')                                                                                                                                         
-while [ "$miyagi_cloud_conn" == "false" ]; do                                                                                                                                                                      
-    echo -e "not connected to cloud, waiting\n"                                                                                                                                                                    
-    sleep 5                                                                                                                                                                                                        
-    json_data=$(cat "$cloud_conn")                                                                                                                                                                                 
-                                                                                                                                                                                                                   
-    miyagi_cloud_conn=$(echo "$json_data" | jq -r '.wizard.miyagi_cloud_conn')                                                                                                                                     
-    echo -e "checking again\n"                                                                                                                                                                                     
+cloud_conn="/mnt/flash/sw-config.json"                                                                                                                                       
+while [ "$(jq -r '.wizard.miyagi_cloud_conn' "$cloud_conn") == "false" ]; do                                                                                                                                                                                             
+    sleep 5                                                                                                                                                                                                                                                                                                         
 done    
 
-#snmpwalk fucntion
+# snmpwalk fucntion
 walksnmp() {
     filename="$1"
     snmpwalk -v2c -c "$commString" "$targetHost" "$OID1" | awk -F "STRING: " '{gsub(/"/,""); print $2}' >"$tempDT"
