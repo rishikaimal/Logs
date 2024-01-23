@@ -1,7 +1,0 @@
-#!/bin/sh -u
-exec 2>&1
-. /etc/runit/functions
-msg 'executing Logs service...'
-exec /usr/bin/log.sh
-msg 'Logs done Successfully...'
-
