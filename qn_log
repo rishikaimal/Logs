@@ -78,7 +78,7 @@ publish "$FIRST_DATA"
 # Store in permanent memory
 temp_file="/tmp/temp_file"
 touch "$temp_file"
-printf "\n---------------$(date)-----------------\n\n" | cat - "$permLogs" >"$temp_file"
+printf "\n------------------------------------\n\n" | cat - "$permLogs" >"$temp_file"
 mv "$temp_file" "$permLogs"
 if [ -s "$permLogs" ]; then
     touch "$temp_file"
@@ -86,7 +86,7 @@ if [ -s "$permLogs" ]; then
     mv "$temp_file" "$permLogs"
 else
     cp "$tempOUT" "$permLogs"
-    echo -e "\n---------------$(date)-----------------\n" >>"$permLogs"
+    echo -e "\n------------------------------------\n" >>"$permLogs"
 fi
 echo "[$(date "+%d-%b-%Y %H:%M:%S")] Initial Logs sent."
 
