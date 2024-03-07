@@ -1,7 +1,7 @@
 #!/bin/sh -u
 exec 2>&1
 . /etc/runit/functions
-msg 'Log service starting....'
+msg 'qnlog service starting....'
 exec /usr/bin/qn_log
-msg 'log service started.'
+msg 'qnlog service started.'
 
